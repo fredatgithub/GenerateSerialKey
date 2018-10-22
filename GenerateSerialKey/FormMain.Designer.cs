@@ -1,6 +1,6 @@
 ﻿namespace GenerateSerialKey
 {
-  partial class Form1
+  partial class FormMain
   {
     /// <summary>
     /// Variable nécessaire au concepteur.
