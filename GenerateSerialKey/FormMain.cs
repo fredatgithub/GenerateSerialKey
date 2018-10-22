@@ -19,7 +19,7 @@ namespace GenerateSerialKey
     {
       string result = string.Empty;
       
-      //
+      //AAAAA-AADDAA-AMMAAA-AAYYYYAA
       return result;
     }
 
