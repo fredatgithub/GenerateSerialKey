@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace GenerateSerialKey
@@ -33,5 +34,24 @@ namespace GenerateSerialKey
       }
       return result;
     }
+
+    public static int GenerateRandomNumberUsingCrypto(int min, int max)
+    {
+      if (max >= 255)
+      {
+        return 0;
+      }
+      int result;
+      var crypto = new RNGCryptoServiceProvider();
+      var randomNumber = new byte[1];
+      do
+      {
+        crypto.GetBytes(randomNumber);
+        result = randomNumber[0];
+      } while (result <= min || result >= max);
+
+      return result;
+    }
+
   }
 }
