@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -107,8 +108,6 @@ namespace GenerateSerialKey
       //         10        20
       string theKey = textBoxKey.Text;
       bool keyIsValid = true;
-      DateTime keyGenerationDate;
-      DateTime keyExpirationDate;
       int extractedDay;
       if (!int.TryParse(theKey.Substring(9, 2), out extractedDay))
       {
@@ -127,13 +126,23 @@ namespace GenerateSerialKey
         keyIsValid = false;
       }
 
-      textBoxCheckKeyValidity.Text = $"Key is {Negate(keyIsValid)}valid";
+      if (theKey.Length != 29)
+      {
+        keyIsValid = false;
+      }
 
+      textBoxCheckKeyValidity.Text = $"Key is {Negate(keyIsValid)}valid";
+      textBoxCheckKeyValidity.BackColor = ColorBackground(keyIsValid);
 
       DateTime extractedDate = new DateTime(extractedYear, extractedMonth, extractedDay);
 
       textBoxKeyGenerationDate.Text = $"Key was generated on {extractedDate.ToShortDateString()}";
       textBoxKeyExpiration.Text = $"Key will expired on {extractedDate.AddDays(30).ToShortDateString()}";
+    }
+
+    private static Color ColorBackground(bool validOrInvalid)
+    {
+      return validOrInvalid ? Color.Green : Color.Red;
     }
 
     private static string Negate(bool trueOrFalse)
