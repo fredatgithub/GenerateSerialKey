@@ -129,6 +129,7 @@ namespace GenerateSerialKey
 
       textBoxCheckKeyValidity.Text = $"Key is {Negate(keyIsValid)}valid";
 
+
       DateTime extractedDate = new DateTime(extractedYear, extractedMonth, extractedDay);
 
       textBoxKeyGenerationDate.Text = $"Key was generated on {extractedDate.ToShortDateString()}";
